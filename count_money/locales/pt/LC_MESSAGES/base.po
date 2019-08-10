@@ -1,0 +1,119 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.7\n"
+"Project-Id-Version: 0.7\n"
+"POT-Creation-Date: 2019-08-10 00:37+0100\n"
+"PO-Revision-Date: 2019-08-10 00:50+0100\n"
+"Last-Translator: Victor Domingos\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: count_money/__main__.py:25
+msgid "Contar Dinheiro"
+msgstr ""
+
+#: count_money/__main__.py:123
+msgid "Notas:"
+msgstr ""
+
+#: count_money/__main__.py:128
+msgid ""
+"\n"
+"Total notas: "
+msgstr ""
+
+#: count_money/__main__.py:151
+msgid "Moedas:"
+msgstr ""
+
+#: count_money/__main__.py:156
+msgid ""
+"\n"
+"Total moedas: "
+msgstr ""
+
+#: count_money/__main__.py:183
+msgid "Total em numerário:"
+msgstr ""
+
+#: count_money/__main__.py:186 count_money/__main__.py:368
+msgid "Limpar"
+msgstr ""
+
+#: count_money/__main__.py:187 count_money/__main__.py:367
+msgid "Guardar…"
+msgstr ""
+
+#: count_money/__main__.py:214
+msgid "Por favor verifique se introduziu corretamente os valores."
+msgstr ""
+
+#: count_money/__main__.py:282
+msgid ""
+"Contagem de Dinheiro\n"
+msgstr ""
+
+#: count_money/__main__.py:286
+msgid ""
+"Data: {}\n"
+"\n"
+msgstr ""
+
+#: count_money/__main__.py:288
+msgid ""
+"NOTAS:\n"
+msgstr ""
+
+#: count_money/__main__.py:297
+msgid ""
+"\n"
+"Subtotal: {:.2f}\n"
+"\n"
+"\n"
+msgstr ""
+
+#: count_money/__main__.py:299
+msgid ""
+"MOEDAS:\n"
+msgstr ""
+
+#: count_money/__main__.py:311
+msgid ""
+"\n"
+"Subtotal: {:.2f}\n"
+msgstr ""
+
+#: count_money/__main__.py:327
+msgid "Ficheiro"
+msgstr ""
+
+#: count_money/__main__.py:329
+msgid "English"
+msgstr ""
+
+#: count_money/__main__.py:332 count_money/__main__.py:363
+msgid "Língua"
+msgstr ""
+
+#: count_money/__main__.py:334 count_money/__main__.py:364
+msgid "Guardar relatório como…"
+msgstr ""
+
+#: count_money/__main__.py:337 count_money/__main__.py:365
+msgid "Limpar todos os campos"
+msgstr ""
+
+#: count_money/__main__.py:345
+msgid "Suporte da aplicação"
+msgstr ""
+
+#: count_money/__main__.py:350
+msgid "Visitar página do autor"
+msgstr ""
+

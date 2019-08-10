@@ -1,0 +1,129 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.7\n"
+"POT-Creation-Date: 2019-08-10 00:37+0100\n"
+"PO-Revision-Date: 2019-08-10 00:50+0100\n"
+"Last-Translator: Victor Domingos\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: count_money/__main__.py:14
+msgid "Contar Dinheiro"
+msgstr "Count Money"
+
+#: count_money/__main__.py:111
+msgid "Notas:"
+msgstr "Bills:"
+
+#: count_money/__main__.py:116
+msgid ""
+"\n"
+"Total notas: "
+msgstr ""
+"\n"
+"Bills total: "
+
+#: count_money/__main__.py:139
+msgid "Moedas:"
+msgstr "Coins:"
+
+#: count_money/__main__.py:144
+msgid ""
+"\n"
+"Total moedas: "
+msgstr ""
+"\n"
+"Coins total: "
+
+#: count_money/__main__.py:171
+msgid "Total em numerário:"
+msgstr "Cash total:"
+
+#: count_money/__main__.py:174
+msgid "Limpar"
+msgstr "Clear"
+
+#: count_money/__main__.py:175
+msgid "Guardar…"
+msgstr "Save…"
+
+#: count_money/__main__.py:202
+msgid "Por favor verifique se introduziu corretamente os valores."
+msgstr "Please, check if you have entered correctly the values."
+
+#: count_money/__main__.py:270
+msgid ""
+"Contagem de Dinheiro\n"
+msgstr "Money Count\n"
+
+#: count_money/__main__.py:274
+msgid ""
+"Data: {}\n"
+"\n"
+msgstr ""
+"Date: {}\n"
+"\n"
+
+#: count_money/__main__.py:276
+msgid ""
+"NOTAS:\n"
+msgstr ""
+"BILLS:\n"
+
+#: count_money/__main__.py:285
+msgid ""
+"\n"
+"Subtotal: {:.2f}\n"
+"\n"
+"\n"
+msgstr ""
+"\n"
+"Subtotal: {:.2f}\n"
+"\n"
+"\n"
+
+#: count_money/__main__.py:287
+msgid ""
+"MOEDAS:\n"
+msgstr ""
+"COINS:\n"
+
+#: count_money/__main__.py:299
+msgid ""
+"\n"
+"Subtotal: {:.2f}\n"
+msgstr ""
+"\n"
+"Subtotal: {:.2f}\n"
+
+#: count_money/__main__.py:315
+msgid "Ficheiro"
+msgstr "File"
+
+#: count_money/__main__.py:316
+msgid "Guardar relatório como…"
+msgstr "Save report as…"
+
+#: count_money/__main__.py:319
+msgid "Limpar todos os campos"
+msgstr "Clear all fields"
+
+#: count_money/__main__.py:327
+msgid "Suporte da aplicação"
+msgstr "Application support for "
+
+#: count_money/__main__.py:332 count_money/__main__.py:363
+msgid "Língua"
+msgstr "Language"
+
+#: count_money/__main__.py:332
+msgid "Visitar página do autor"
+msgstr "Visit author's website"
+

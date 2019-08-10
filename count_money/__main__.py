@@ -2,6 +2,7 @@
 import os
 import webbrowser
 import tkinter as tk
+import gettext
 
 from tkinter import font
 from tkinter import ttk
@@ -9,17 +10,29 @@ from tkinter import messagebox
 from tkinter import filedialog
 from datetime import datetime
 
-__app_name__ = "Contar Dinheiro"
+
+def init_language(lang_code='en'):
+    global LANG_EN
+    global _
+    LANG_EN = gettext.translation('base', localedir='./count_money/locales', languages=[lang_code])
+    LANG_EN.install()
+    _ = LANG_EN.gettext
+
+
+init_language('pt')
+
+
+__app_name__ = _("Contar Dinheiro")
 __author__ = "Victor Domingos"
-__copyright__ = "Copyright 2018 Victor Domingos"
+__copyright__ = "Copyright 2019 Victor Domingos"
 __license__ = "Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)"
-__version__ = "v.0.6 beta"
 __status__ = "Beta"
 
 ALL_BILLS = ["500", "200", "100", "50", "20", "10", "5"]
 ALL_COINS = ["2.00", "1.00", "0.50", "0.20", "0.10", "0.05", "0.02", "0.01"]
 
 DEFAULT_DIR = os.path.expanduser("~/")
+
 
 
 class calc_window:
@@ -35,7 +48,7 @@ class calc_window:
         self.soma_moedas = 0
         self.total = 0
 
-        default_position_x = 1050
+        default_position_x = 0
         default_position_y = 0
         if __name__ == "__main__":
             position_x = 0
@@ -80,10 +93,8 @@ class calc_window:
         self.str_m2.trace("w", self.update_contas)
         self.str_m1.trace("w", self.update_contas)
 
-        print("\n - A iniciar a calculadora de notas e moedas...")
-
         self.janelaCalc = tk.Toplevel()
-        self.janelaCalc.title("Contar dinheiro")
+        self.janelaCalc.title(__app_name__)
 
         self.janelaCalc.configure(background='grey92')
 
@@ -109,14 +120,15 @@ class calc_window:
         # ---------- MEIO -----------
 
         # ---Esquerda
-        ttk.Label(lbl_frame1, text="Notas:", font=titlefont).grid(row=1, column=1, columnspan=2)
+        self.lbl_notas = ttk.Label(lbl_frame1, text=_("Notas:"), font=titlefont)
+        self.lbl_notas.grid(row=1, column=1, columnspan=2)
         linha = 2
         for key in sorted(self.notas, key=int, reverse=True):
             ttk.Label(lbl_frame1, text=key + "€").grid(row=linha, column=1, sticky="e")
             linha += 1
-        lbl_totn1 = ttk.Label(lbl_frame1, text="\nTotal notas: ")
+        self.lbl_totn1 = ttk.Label(lbl_frame1, text=_("\nTotal notas: "))
         lbl_totn2 = ttk.Label(lbl_frame1, textvariable=self.str_soma_notas)
-        lbl_totn1.grid(row=10, column=1, columnspan=2)
+        self.lbl_totn1.grid(row=10, column=1, columnspan=2)
         lbl_totn2.grid(row=11, column=1, columnspan=2)
 
         lbl_n500 = ttk.Entry(lbl_frame1, width=4, textvariable=self.str_n500)
@@ -137,14 +149,15 @@ class calc_window:
         lbl_espaco = ttk.Label(lbl_frame1, text=" ")
         lbl_espaco.grid(row=1, column=3)
         # ---Direita
-        ttk.Label(lbl_frame1, text="Moedas:", font=titlefont).grid(row=1, column=4, columnspan=2)
+        self.lbl_moedas = ttk.Label(lbl_frame1, text=_("Moedas:"), font=titlefont)
+        self.lbl_moedas.grid(row=1, column=4, columnspan=2)
         linha = 2
         for key in sorted(self.moedas, key=float, reverse=True):
             ttk.Label(lbl_frame1, text=key + "€").grid(row=linha, column=4, sticky="e")
             linha += 1
-        lbl_totm1 = ttk.Label(lbl_frame1, text="\nTotal moedas: ")
+        self.lbl_totm1 = ttk.Label(lbl_frame1, text=_("\nTotal moedas: "))
         lbl_totm2 = ttk.Label(lbl_frame1, textvariable=self.str_soma_moedas)
-        lbl_totm1.grid(row=10, column=4, columnspan=2)
+        self.lbl_totm1.grid(row=10, column=4, columnspan=2)
         lbl_totm2.grid(row=11, column=4, columnspan=2)
 
         lbl_m200 = ttk.Entry(lbl_frame1, width=4, textvariable=self.str_m200)
@@ -169,17 +182,17 @@ class calc_window:
 
         # ---------- FUNDO -----------
         # copyright_lbl = ttk.Label(pframe_fundo, font=copyfont, text="\n\n\n© 2016 Victor Domingos")
-        tot_str1 = "Total em numerário:"
-        tot_lbl1 = ttk.Label(pframe_fundo, font=labelfont, text=tot_str1)
+        tot_str1 = _("Total em numerário:")
+        self.tot_lbl1 = ttk.Label(pframe_fundo, font=labelfont, text=tot_str1)
         tot_lbl2 = ttk.Label(pframe_fundo, font=totalfont, textvariable=self.str_total)
-        limpar_btn = ttk.Button(pframe_limpar, text="Limpar", command=self.limpar)
-        guardar_btn = ttk.Button(pframe_limpar, text="Guardar…", command=self.save_report)
+        self.limpar_btn = ttk.Button(pframe_limpar, text=_("Limpar"), command=self.limpar)
+        self.guardar_btn = ttk.Button(pframe_limpar, text=_("Guardar…"), command=self.save_report)
 
         # app_lbl.pack()
-        tot_lbl1.pack()
+        self.tot_lbl1.pack()
         tot_lbl2.pack()
-        limpar_btn.pack(side="left", padx=4)
-        guardar_btn.pack(side="right", padx=4)
+        self.limpar_btn.pack(side="left", padx=4)
+        self.guardar_btn.pack(side="right", padx=4)
 
         lbl_frame1.pack()
         # copyright_lbl.pack()
@@ -200,7 +213,7 @@ class calc_window:
             return True
         except ValueError as e:
             print("representsInt():", e)
-            messagebox.showwarning("", "Por favor verifique se introduziu corretamente os valores.")
+            messagebox.showwarning("", _("Por favor verifique se introduziu corretamente os valores."))
             return False
 
     def converter(self, arg):
@@ -213,7 +226,7 @@ class calc_window:
         else:
             return 0
 
-    def limpar(self):
+    def limpar(self, *event):
         self.str_n500.set("")
         self.str_n200.set("")
         self.str_n100.set("")
@@ -268,12 +281,13 @@ class calc_window:
         with filedialog.asksaveasfile(initialdir=DEFAULT_DIR,
                                       mode="w",
                                       parent=self.janelaCalc) as f:
-            f.write("Contagem de Dinheiro\n")
-            f.write("====================\n")
+            txt = _("Contagem de Dinheiro\n")
+            f.write(txt)
+            f.write("=" * len(txt) + "\n")
             f.write("\n\n")
-            f.write(f"Data: {datetime.now()}\n\n")
+            f.write(_("Data: {}\n\n").format(str(datetime.now())[:-7]))
             f.write("\n")
-            f.write("NOTAS:\n")
+            f.write(_("NOTAS:\n"))
             subtotal_notas = 0.0
             for bill_type in ALL_BILLS:
                 face_value = float(bill_type)
@@ -282,21 +296,21 @@ class calc_window:
                 total = f"{line_total:.2f}€".rjust(10)
                 f.write(f"{qtd.rjust(10)}  x {bill_type.rjust(4)}€  ={total}\n")
                 subtotal_notas += line_total
-            f.write(f"\nSubtotal: {subtotal_notas:.2f}\n\n\n")
+            f.write(_("\nSubtotal: {:.2f}\n\n\n").format(subtotal_notas))
 
-            f.write("MOEDAS:\n")
+            f.write(_("MOEDAS:\n"))
             subtotal_moedas = 0.0
-            print(ALL_COINS)
+            #print(ALL_COINS)
             for coin_type in ALL_COINS:
-                print(coin_type, type(coin_type))
+                #print(coin_type, type(coin_type))
                 face_value = float(coin_type)
-                print(face_value, type(face_value))
+                #print(face_value, type(face_value))
                 qtd = str(int(self.moedas[coin_type]))
                 line_total = float(face_value) * float(self.moedas[coin_type])
-                total = f"({line_total:.2f}€)".rjust(10)
+                total = f"{line_total:.2f}€".rjust(10)
                 f.write(f"{qtd.rjust(10)}  x {coin_type.rjust(4)}€  ={total}\n")
                 subtotal_moedas += line_total
-            f.write(f"\nSubtotal: {subtotal_moedas:.2f}\n")
+            f.write(_("\nSubtotal: {:.2f}\n").format(subtotal_moedas))
 
             f.write("\n\n==========================\n\n")
             total_all = subtotal_notas + subtotal_moedas
@@ -308,30 +322,71 @@ class calc_window:
 
     def gerar_menu(self):
         # Menu da janela principal
-        self.menu = tk.Menu(root)
-        root.config(menu=self.menu)
+        self.menu = tk.Menu(self.master)
+        self.master.config(menu=self.menu)
 
-        self.helpmenu = tk.Menu(self.menu)
-        self.menu.add_cascade(label="Help", menu=self.helpmenu)
+        self.filemenu = tk.Menu(self.menu)
+        self.menu.add_cascade(label=_("Ficheiro"), menu=self.filemenu)
+        self.langmenu = tk.Menu(self.filemenu)
+        self.langmenu.add_command(label=_("English"),
+                                  command=lambda: self.change_language('en'))
+        self.langmenu.add_command(label=_("Português"),
+                                  command=lambda: self.change_language('pt'))
 
-        # self.helpmenu.add_command(label="Acerca de "+__app_name__, command=about_window)
-        self.helpmenu.add_command(label="Suporte da aplicação " + __app_name__,
-                                  command=lambda: webbrowser.open("https://victordomingos.com/contactos/", new=1,
+        self.filemenu.add_cascade(label=_("Língua"), menu=self.langmenu)
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label=_("Guardar relatório como…"),
+                                  command=self.save_report,
+                                  accelerator="Command+s")
+        self.filemenu.add_command(label=_("Limpar todos os campos"),
+                                  command=self.limpar,
+                                  accelerator="Command+l")
+
+        self.filemenu.add_separator()
+        self.filemenu.add_command(label=_("Suporte da aplicação"),
+                                  command=lambda: webbrowser.open("https://victordomingos.com/contactos/",
+                                                                  new=1,
                                                                   autoraise=True))
-        # self.helpmenu.add_command(label="Agradecimentos", command=thanks_window)
-        self.helpmenu.add_separator()
-        self.helpmenu.add_command(label="Visitar página do autor",
-                                  command=lambda: webbrowser.open("https://no-title.victordomingos.com", new=1,
-                                                                  autoraise=True))
-        # root.bind('<<about-idle>>', about_dialog)
-        # root.bind('<<open-config-dialog>>', config_dialog)
-        # root.createcommand('tkAboutDialog', about_window)
+
+        self.filemenu.add_command(label=_("Visitar página do autor"),
+                                   command=lambda: webbrowser.open("https://no-title.victordomingos.com",
+                                                                   new=1,
+                                                                   autoraise=True))
+
+        self.master.bind_all("<Command-s>", self.save_report)
+        self.master.bind_all("<Command-l>", self.limpar)
 
 
-if __name__ == "__main__":
+    def change_language(self, lang='en'):
+        init_language(lang)
+        self.menu.entryconfig(0, label=_("Ficheiro"))
+        self.filemenu.entryconfig(0, label=_("Língua"))
+        self.filemenu.entryconfig(2, label=_("Guardar relatório como…"))
+        self.filemenu.entryconfig(3, label=_("Limpar todos os campos"))
+        self.filemenu.entryconfig(5, label=_("Suporte da aplicação"))
+        self.filemenu.entryconfig(6, label=_("Visitar página do autor"))
+
+        self.lbl_notas.config(text=_("Notas:"))
+        self.lbl_totn1.config(text=_("\nTotal notas: "))
+        self.lbl_moedas.config(text=_("Moedas:"))
+        self.lbl_totm1.config(text=_("\nTotal moedas: "))
+        self.tot_lbl1.config(text=_("Total em numerário:"))
+
+        self.guardar_btn.config(text=_("Guardar…"))
+        self.limpar_btn.config(text=_("Limpar"))
+
+
+
+
+def main():
     root = tk.Tk()
     root.withdraw()
     janela_calculadora = calc_window(root)
     janela_calculadora.resizable(width=False, heigth=False)
     janela_calculadora.janelaCalc.focus()
     root.mainloop()
+
+
+if __name__ == "__main__":
+    main()
+
