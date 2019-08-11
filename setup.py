@@ -27,26 +27,11 @@ def read_readme(file_name):
         return f.read()
 
 
-
-#class Sdist(sdist):
-#    """Custom ``sdist`` command to ensure that mo files are always created."""
-#
-#    def run(self):
-#        self.run_command('compile_catalog')
-#        sdist.run(self)
-
-
-from setuptools.command.install import install
-
-class InstallWithCompile(install):
+class Sdist(sdist):
+    """Custom ``sdist`` command to ensure that mo files are always created."""
     def run(self):
-        from babel.messages.frontend import compile_catalog
-        compiler = compile_catalog(self.distribution)
-        option_dict = self.distribution.get_option_dict('compile_catalog')
-        compiler.domain = [option_dict['domain'][1]]
-        compiler.directory = option_dict['directory'][1]
-        compiler.run()
-        super().run()
+        self.run_command('compile_catalog')
+        sdist.run(self)
 
 
 setup(name='count-money',
@@ -58,12 +43,10 @@ setup(name='count-money',
       license='MIT',
       url='https://no-title.victordomingos.com/projects/contar-dinheiro/',  # homepage
       python_requires='>=3.6',
-      setup_requires=['Babel'],
+      setup_requires=['babel'],
 
-      #cmdclass={'sdist': Sdist},
-      
-      cmdclass = { 'install': InstallWithCompile, },
-      
+      cmdclass={'sdist': Sdist},
+
       classifiers=[
         'Development Status :: 5 - Production/Stable ',
         'Environment :: MacOS X',
@@ -81,17 +64,17 @@ setup(name='count-money',
         'Topic :: Utilities',
         'Topic :: Desktop Environment :: File Managers',
         'Topic :: System :: Filesystems',
-
       ],
     
       keywords='money count sum coins bills gui accounting commerce',
+
       entry_points={
           'console_scripts': [
               'count-money = count_money.__main__:main'
           ]
       },
 
-      package_data={'': ['locales/*/*/*.mo', 'locales/*/*/*.po']},
+      package_data={'': ['locale/*/*/*.mo', 'locale/*/*/*.po']},
 
       project_urls={
         'Documentation': 'https://github.com/victordomingos/ContarDinheiro.py/blob/master/README.md',

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# encoding: utf-8
 import os
 import webbrowser
 import tkinter as tk
@@ -12,11 +13,10 @@ from datetime import datetime
 
 
 def init_language(lang_code='en'):
-    global LANG_EN
     global _
-    LANG_EN = gettext.translation('base', localedir='./count_money/locales', languages=[lang_code])
-    LANG_EN.install()
-    _ = LANG_EN.gettext
+    localedir = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'locale')
+    translate = gettext.translation('count_money', localedir, fallback=True, languages=[lang_code])
+    _ = translate.gettext
 
 
 init_language('pt')
@@ -34,8 +34,7 @@ ALL_COINS = ["2.00", "1.00", "0.50", "0.20", "0.10", "0.05", "0.02", "0.01"]
 DEFAULT_DIR = os.path.expanduser("~/")
 
 
-
-class calc_window:
+class CalcWindow:
     def __init__(self, master):
         self.master = master
         jan_w = 230
@@ -207,12 +206,13 @@ class calc_window:
         self.gerar_menu()
         self.janelaCalc.mainloop()
 
-    def representsInt(self, s):
+    @staticmethod
+    def represents_int(s):
         try:
             int(s)
             return True
         except ValueError as e:
-            print("representsInt():", e)
+            print("represents_int():", e)
             messagebox.showwarning("", _("Por favor verifique se introduziu corretamente os valores."))
             return False
 
@@ -221,7 +221,7 @@ class calc_window:
 
         if texto == "":
             return 0
-        elif self.representsInt(texto):
+        elif self.represents_int(texto):
             return int(texto)
         else:
             return 0
@@ -327,13 +327,7 @@ class calc_window:
 
         self.filemenu = tk.Menu(self.menu)
         self.menu.add_cascade(label=_("Ficheiro"), menu=self.filemenu)
-        self.langmenu = tk.Menu(self.filemenu)
-        self.langmenu.add_command(label=_("English"),
-                                  command=lambda: self.change_language('en'))
-        self.langmenu.add_command(label=_("Português"),
-                                  command=lambda: self.change_language('pt'))
 
-        self.filemenu.add_cascade(label=_("Língua"), menu=self.langmenu)
         self.filemenu.add_separator()
         self.filemenu.add_command(label=_("Guardar relatório como…"),
                                   command=self.save_report,
@@ -342,16 +336,26 @@ class calc_window:
                                   command=self.limpar,
                                   accelerator="Command+l")
 
-        self.filemenu.add_separator()
-        self.filemenu.add_command(label=_("Suporte da aplicação"),
+
+        self.prefs_menu = tk.Menu(self.menu)
+        self.menu.add_cascade(label=_("Preferências"), menu=self.prefs_menu)
+        self.prefs_menu.add_command(label=_("English"),
+                                  command=lambda: self.change_language('en'))
+        self.prefs_menu.add_command(label=_("Português"),
+                                  command=lambda: self.change_language('pt'))
+
+        self.helpmenu = tk.Menu(self.menu)
+        self.menu.add_cascade(label=_("Ajuda"), menu=self.helpmenu)
+        self.helpmenu.add_command(label=_("Suporte da aplicação"),
                                   command=lambda: webbrowser.open("https://victordomingos.com/contactos/",
                                                                   new=1,
                                                                   autoraise=True))
 
-        self.filemenu.add_command(label=_("Visitar página do autor"),
-                                   command=lambda: webbrowser.open("https://no-title.victordomingos.com",
-                                                                   new=1,
-                                                                   autoraise=True))
+        self.helpmenu.add_command(label=_("Visitar página do autor"),
+                                  command=lambda: webbrowser.open("https://no-title.victordomingos.com",
+                                                                  new=1,
+                                                                  autoraise=True))
+
 
         self.master.bind_all("<Command-s>", self.save_report)
         self.master.bind_all("<Command-l>", self.limpar)
@@ -360,11 +364,14 @@ class calc_window:
     def change_language(self, lang='en'):
         init_language(lang)
         self.menu.entryconfig(0, label=_("Ficheiro"))
-        self.filemenu.entryconfig(0, label=_("Língua"))
-        self.filemenu.entryconfig(2, label=_("Guardar relatório como…"))
-        self.filemenu.entryconfig(3, label=_("Limpar todos os campos"))
-        self.filemenu.entryconfig(5, label=_("Suporte da aplicação"))
-        self.filemenu.entryconfig(6, label=_("Visitar página do autor"))
+        self.menu.entryconfig(1, label=_("Preferências"))
+        self.menu.entryconfig(2, label=_("Ajuda"))
+
+        self.filemenu.entryconfig(1, label=_("Guardar relatório como…"))
+        self.filemenu.entryconfig(2, label=_("Limpar todos os campos"))
+
+        self.helpmenu.entryconfig(0, label=_("Suporte da aplicação"))
+        self.helpmenu.entryconfig(1, label=_("Visitar página do autor"))
 
         self.lbl_notas.config(text=_("Notas:"))
         self.lbl_totn1.config(text=_("\nTotal notas: "))
@@ -376,12 +383,10 @@ class calc_window:
         self.limpar_btn.config(text=_("Limpar"))
 
 
-
-
 def main():
     root = tk.Tk()
     root.withdraw()
-    janela_calculadora = calc_window(root)
+    janela_calculadora = CalcWindow(root)
     janela_calculadora.resizable(width=False, heigth=False)
     janela_calculadora.janelaCalc.focus()
     root.mainloop()
