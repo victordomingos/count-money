@@ -5,7 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0.7\n"
-"POT-Creation-Date: 2019-08-10 00:37+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-12 00:53+0100\n"
 "PO-Revision-Date: 2019-08-10 00:50+0100\n"
 "Last-Translator: Victor Domingos\n"
 "MIME-Version: 1.0\n"
@@ -13,16 +14,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-
-#: count_money/__main__.py:14
+#: count_money/__main__.py:25
 msgid "Contar Dinheiro"
 msgstr "Count Money"
 
-#: count_money/__main__.py:111
+#: count_money/__main__.py:122 count_money/__main__.py:376
 msgid "Notas:"
 msgstr "Bills:"
 
-#: count_money/__main__.py:116
+#: count_money/__main__.py:128 count_money/__main__.py:377
 msgid ""
 "\n"
 "Total notas: "
@@ -30,11 +30,11 @@ msgstr ""
 "\n"
 "Bills total: "
 
-#: count_money/__main__.py:139
+#: count_money/__main__.py:151 count_money/__main__.py:378
 msgid "Moedas:"
 msgstr "Coins:"
 
-#: count_money/__main__.py:144
+#: count_money/__main__.py:157 count_money/__main__.py:379
 msgid ""
 "\n"
 "Total moedas: "
@@ -42,28 +42,27 @@ msgstr ""
 "\n"
 "Coins total: "
 
-#: count_money/__main__.py:171
+#: count_money/__main__.py:184 count_money/__main__.py:380
 msgid "Total em numerário:"
 msgstr "Cash total:"
 
-#: count_money/__main__.py:174
+#: count_money/__main__.py:187 count_money/__main__.py:383
 msgid "Limpar"
 msgstr "Clear"
 
-#: count_money/__main__.py:175
+#: count_money/__main__.py:188 count_money/__main__.py:382
 msgid "Guardar…"
 msgstr "Save…"
 
-#: count_money/__main__.py:202
+#: count_money/__main__.py:216
 msgid "Por favor verifique se introduziu corretamente os valores."
 msgstr "Please, check if you have entered correctly the values."
 
-#: count_money/__main__.py:270
-msgid ""
-"Contagem de Dinheiro\n"
+#: count_money/__main__.py:284
+msgid "Contagem de Dinheiro\n"
 msgstr "Money Count\n"
 
-#: count_money/__main__.py:274
+#: count_money/__main__.py:288
 msgid ""
 "Data: {}\n"
 "\n"
@@ -71,59 +70,69 @@ msgstr ""
 "Date: {}\n"
 "\n"
 
-#: count_money/__main__.py:276
-msgid ""
-"NOTAS:\n"
-msgstr ""
-"BILLS:\n"
-
-#: count_money/__main__.py:285
-msgid ""
-"\n"
-"Subtotal: {:.2f}\n"
-"\n"
-"\n"
-msgstr ""
-"\n"
-"Subtotal: {:.2f}\n"
-"\n"
-"\n"
-
-#: count_money/__main__.py:287
-msgid ""
-"MOEDAS:\n"
-msgstr ""
-"COINS:\n"
+#: count_money/__main__.py:290
+msgid "NOTAS:\n"
+msgstr "BILLS:\n"
 
 #: count_money/__main__.py:299
 msgid ""
 "\n"
 "Subtotal: {:.2f}\n"
+"\n"
+"\n"
+msgstr ""
+"\n"
+"Subtotal: {:.2f}\n"
+"\n"
+"\n"
+
+#: count_money/__main__.py:301
+msgid "MOEDAS:\n"
+msgstr "COINS:\n"
+
+#: count_money/__main__.py:313
+msgid ""
+"\n"
+"Subtotal: {:.2f}\n"
 msgstr ""
 "\n"
 "Subtotal: {:.2f}\n"
 
-#: count_money/__main__.py:315
+#: count_money/__main__.py:329 count_money/__main__.py:366
 msgid "Ficheiro"
 msgstr "File"
 
-#: count_money/__main__.py:316
+#: count_money/__main__.py:332 count_money/__main__.py:370
 msgid "Guardar relatório como…"
 msgstr "Save report as…"
 
-#: count_money/__main__.py:319
+#: count_money/__main__.py:335 count_money/__main__.py:371
 msgid "Limpar todos os campos"
 msgstr "Clear all fields"
 
-#: count_money/__main__.py:327
+#: count_money/__main__.py:341 count_money/__main__.py:367
+msgid "Preferências"
+msgstr "Preferences"
+
+#: count_money/__main__.py:342
+msgid "English"
+msgstr ""
+
+#: count_money/__main__.py:344
+msgid "Português"
+msgstr ""
+
+#: count_money/__main__.py:348 count_money/__main__.py:368
+msgid "Ajuda"
+msgstr "Help"
+
+#: count_money/__main__.py:349 count_money/__main__.py:373
 msgid "Suporte da aplicação"
-msgstr "Application support for "
+msgstr "Application support"
 
-#: count_money/__main__.py:332 count_money/__main__.py:363
-msgid "Língua"
-msgstr "Language"
-
-#: count_money/__main__.py:332
+#: count_money/__main__.py:354 count_money/__main__.py:374
 msgid "Visitar página do autor"
 msgstr "Visit author's website"
 
+#~ msgid "Língua"
+#~ msgstr "Language"
