@@ -18,7 +18,7 @@ pip3 install count-money
 
 ## How to use:
 
-The current version of this aplication can be run from the command line shell using the following command:
+The current version of this application can be run from the command line shell using the following command:
 
 ```
 count-money
