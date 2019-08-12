@@ -3,6 +3,7 @@
 # Count Money [![Github commits (since latest release)](https://img.shields.io/github/commits-since/victordomingos/count-money/latest.svg)](https://github.com/victordomingos/count-money) ![PyPI](https://img.shields.io/pypi/v/count-money) ![PyPI - Downloads](https://img.shields.io/pypi/dm/count-money)
 
 ![img](https://github.com/victordomingos/count-money/raw/master/screenshots/screenshot_en.png)
+
 A little utility app to help you count coins and bills, which calculates in real-time the total amount of money.
 Additionally, it can save a report in a text file containing both the totals and the individual amounts.
 
