@@ -363,6 +363,7 @@ class CalcWindow:
 
     def change_language(self, lang='en'):
         init_language(lang)
+        self.janelaCalc.title(_(__app_name__))
         self.menu.entryconfig(0, label=_("Ficheiro"))
         self.menu.entryconfig(1, label=_("Preferências"))
         self.menu.entryconfig(2, label=_("Ajuda"))
