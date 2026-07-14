@@ -38,9 +38,9 @@ class CalcWindow:
     def __init__(self, master):
         self.master = master
         jan_w = 230
-        jan_h = 430
+        jan_h = 470
         min_w = 230
-        min_h = 430
+        min_h = 470
         self.notas = {n: 0 for n in ALL_BILLS}
         self.moedas = {n: 0 for n in ALL_COINS}
         self.soma_notas = 0
@@ -75,27 +75,27 @@ class CalcWindow:
         self.str_m5 = tk.StringVar()
         self.str_m2 = tk.StringVar()
         self.str_m1 = tk.StringVar()
-        self.str_n500.trace("w", self.update_contas)
-        self.str_n200.trace("w", self.update_contas)
-        self.str_n100.trace("w", self.update_contas)
-        self.str_n100.trace("w", self.update_contas)
-        self.str_n50.trace("w", self.update_contas)
-        self.str_n20.trace("w", self.update_contas)
-        self.str_n10.trace("w", self.update_contas)
-        self.str_n5.trace("w", self.update_contas)
-        self.str_m200.trace("w", self.update_contas)
-        self.str_m100.trace("w", self.update_contas)
-        self.str_m50.trace("w", self.update_contas)
-        self.str_m20.trace("w", self.update_contas)
-        self.str_m10.trace("w", self.update_contas)
-        self.str_m5.trace("w", self.update_contas)
-        self.str_m2.trace("w", self.update_contas)
-        self.str_m1.trace("w", self.update_contas)
+        self.str_n500.trace_add("write", self.update_contas)
+        self.str_n200.trace_add("write", self.update_contas)
+        self.str_n100.trace_add("write", self.update_contas)
+        self.str_n100.trace_add("write", self.update_contas)
+        self.str_n50.trace_add("write", self.update_contas)
+        self.str_n20.trace_add("write", self.update_contas)
+        self.str_n10.trace_add("write", self.update_contas)
+        self.str_n5.trace_add("write", self.update_contas)
+        self.str_m200.trace_add("write", self.update_contas)
+        self.str_m100.trace_add("write", self.update_contas)
+        self.str_m50.trace_add("write", self.update_contas)
+        self.str_m20.trace_add("write", self.update_contas)
+        self.str_m10.trace_add("write", self.update_contas)
+        self.str_m5.trace_add("write", self.update_contas)
+        self.str_m2.trace_add("write", self.update_contas)
+        self.str_m1.trace_add("write", self.update_contas)
 
         self.janelaCalc = tk.Toplevel()
         self.janelaCalc.title(__app_name__)
 
-        self.janelaCalc.configure(background='grey92')
+        self.janelaCalc.configure(background='white')
 
         self.janelaCalc.update_idletasks()
         self.janelaCalc.geometry("{}x{}+{}+{}".format(jan_w, jan_h, position_x, position_y))
@@ -103,7 +103,7 @@ class CalcWindow:
         self.janelaCalc.maxsize(min_w, min_h)
         pframe_topo = ttk.Frame(self.janelaCalc, padding="5 0 5 0")
         pframe_meio = ttk.Frame(self.janelaCalc, padding="0 5 0 0")
-        pframe_fundo = ttk.Frame(self.janelaCalc, padding="0 0 5 5")
+        pframe_fundo = ttk.Frame(self.janelaCalc, padding="0 0 15 15")
         pframe_limpar = ttk.Frame(self.janelaCalc, padding="5 10 5 10")
         lbl_frame1 = ttk.Labelframe(pframe_meio, pad="5", labelanchor="s")
 
@@ -111,7 +111,7 @@ class CalcWindow:
         labelfont = font.Font(size=12)
         # copyfont = font.Font(size=10)
         titlefont = font.Font(size=14, weight='bold')
-        totalfont = font.Font(size=24, weight='bold')
+        totalfont = font.Font(size=18, weight='bold')
 
         # ---------- TOPO -----------
         #        app_lbl = ttk.Label(pframe_topo, font=appfont, text="Contar dinheiro")
@@ -189,7 +189,7 @@ class CalcWindow:
 
         # app_lbl.pack()
         self.tot_lbl1.pack()
-        tot_lbl2.pack()
+        tot_lbl2.pack(pady=(0, 15))
         self.limpar_btn.pack(side="left", padx=4)
         self.guardar_btn.pack(side="right", padx=4)
 
@@ -322,8 +322,8 @@ class CalcWindow:
 
     def gerar_menu(self):
         # Menu da janela principal
-        self.menu = tk.Menu(self.master)
-        self.master.config(menu=self.menu)
+        self.menu = tk.Menu(self.janelaCalc)
+        self.janelaCalc.config(menu=self.menu)
 
         self.filemenu = tk.Menu(self.menu)
         self.menu.add_cascade(label=_("Ficheiro"), menu=self.filemenu)
@@ -357,8 +357,8 @@ class CalcWindow:
                                                                   autoraise=True))
 
 
-        self.master.bind_all("<Command-s>", self.save_report)
-        self.master.bind_all("<Command-l>", self.limpar)
+        self.janelaCalc.bind_all("<Command-s>", self.save_report)
+        self.janelaCalc.bind_all("<Command-l>", self.limpar)
 
 
     def change_language(self, lang='en'):
